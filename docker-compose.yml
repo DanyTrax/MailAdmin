@@ -90,6 +90,7 @@ services:
       context: https://github.com/DanyTrax/MailAdmin.git#main:mail-admin
     image: mailadmin:latest
     container_name: mail-admin
+    user: "0:0"
     ports:
       - "8889:80"
     restart: always
