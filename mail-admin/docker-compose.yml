@@ -1,0 +1,21 @@
+version: "3.8"
+
+# Uso standalone del panel: ejecuta docker compose up -d --build desde esta carpeta.
+# Apunta MAILCONFIG_PATH al directorio donde docker-mailserver guarda su /tmp/docker-mailserver.
+
+services:
+  mail-admin:
+    build: .
+    container_name: mail-admin
+    ports:
+      - "${MAIL_ADMIN_PORT:-8889}:80"
+    restart: always
+    environment:
+      ADMIN_USER: ${ADMIN_USER:-admin}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-admin}
+      DEFAULT_DOMAIN: ${DEFAULT_DOMAIN:-example.com}
+      ACCOUNTS_FILE: /mailconfig/postfix-accounts.cf
+      ALIASES_FILE: /mailconfig/postfix-virtual.cf
+      QUOTA_FILE: /mailconfig/dovecot-quotas.cf
+    volumes:
+      - ${MAILCONFIG_PATH:-../mailconfig}:/mailconfig

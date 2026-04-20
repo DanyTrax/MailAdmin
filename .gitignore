@@ -1,0 +1,14 @@
+# Datos del servidor de correo — NO subir nunca
+maildata/
+mailstate/
+mailconfig/
+
+# Entorno local
+.env
+*.log
+
+# Sistema / editores
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
